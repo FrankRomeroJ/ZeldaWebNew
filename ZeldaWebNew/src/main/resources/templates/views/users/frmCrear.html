@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/users/save}" th:object="${users}" method="post">
+					<div class="form-group row">
+						<input type="hidden" th:field="*{id}">
+						<label class="col-md-2" for="username">Usuario:</label>
+						<input type="text" th:field="*{username}" class="form-control form-control-sm col-md-6"
+							id="username" placeholder="username">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('username')}"
+							th:errors="*{username}">
+						</small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="password">Contraseña:</label>
+						<input type="text" th:field="*{password}" class="form-control form-control-sm col-md-6"
+							id="password" placeholder="password">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}">
+						</small>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" th:field="*{enabled}" th:value="*{enabled}"
+							id="enabled">
+						<label class="form-check-label" for="enabled">
+							Enabled
+						</label>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('enabled')}"
+							th:errors="*{enabled}">
+						</small>
+					</div>
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+
+</html>
