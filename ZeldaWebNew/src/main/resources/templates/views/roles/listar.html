@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">		
+		<h1 th:text="${titulo}"></h1>		
+	</div>
+	
+	<div class="container"></div>
+		
+		<a class="btn btn-primary btn-sm" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/views/roles/create}"
+			th:text="'Nuevo Rol'" title="Crear Nuevo Registro">
+		</a>
+		
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Rol</th>
+					<th scope="col">Descripción</th>
+					
+					<th scope="col" sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')">Editar</th>
+					<th scope="col" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ro:${roles}">
+					<th scope="row" th:text="${ro.id}"></th>
+					<td th:text="${ro.users.username}"></td>
+					<td th:text="${ro.grupos_roles.rol}"></td>
+					<td sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+						<a class="btn btn-success btn-sm"  th:href="@{/views/roles/edit/} + ${ro.id}"
+							th:text="'Editar'" title="Editar Registro">
+						</a>
+					</td>	
+					<td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+						<a class="btn btn-danger btn-sm"  th:href="@{/views/roles/delete/} + ${ro.id}"
+							th:text="'Eliminar'" title="Eliminar Registro"
+							onclick="return confirm('Esta seguro de eliminar el registro?');">
+						</a>
+					</td>					
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+</html>

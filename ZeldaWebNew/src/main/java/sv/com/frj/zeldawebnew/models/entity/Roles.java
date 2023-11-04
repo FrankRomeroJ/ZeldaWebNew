@@ -14,10 +14,11 @@ public class Roles implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="rol",referencedColumnName = "idrol")
+	@JoinColumn(name="rol",referencedColumnName = "rol")
 	private Grupos_roles grupos_roles;
 
 	

@@ -41,8 +41,8 @@
 								aria-expanded="false">Seguridad</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" th:href="@{/views/users/}">Usuarios</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><a class="dropdown-item" href="#">Something else here</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/grupos_roles/}">Lista de Roles</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/roles/}">Asignación de Roles</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -60,7 +60,8 @@
 
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								<a class="dropdown-item" href="#">Perfil</a>
-								<a class="dropdown-item" href="#">Cambiar Contraseña</a>
+								<a class="dropdown-item" th:href="@{/views/users/cambiaclaveUser}">Cambiar Contraseña</a>
+
 
 								<form th:action="@{/logout}" method="post">
 									<button class="dropdown-item" type="submit">Cerrar Sesion</button>

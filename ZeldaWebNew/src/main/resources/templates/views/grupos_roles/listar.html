@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">		
+		<h1 th:text="${titulo}"></h1>		
+	</div>
+	
+	<div class="container"></div>
+			
+			<a class="btn btn-primary btn-sm" th:href="@{/home}"
+			th:text="'Volver'" title="Volver">
+		</a>
+		
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="gr:${grupos_roles}">
+					<th scope="row" th:text="${gr.rol}"></th>
+					<td th:text="${gr.descripcion}"></td>				
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+</html>

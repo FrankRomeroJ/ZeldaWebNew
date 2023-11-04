@@ -35,6 +35,17 @@ public class UsersServiceImpl implements IUsersService {
 		usersRepository.deleteById(id);
 	}
 
+	@Override
+	public Users buscarPorUsername(String username) {
+		
+		Users users = null;
+		
+		users= usersRepository.findByUsername (username);
+		
+		return users;
+	
+		
+	}
 
 
 }

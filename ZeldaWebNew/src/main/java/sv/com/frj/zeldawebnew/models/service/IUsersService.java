@@ -10,5 +10,5 @@ public interface IUsersService {
 	public void guardar(Users users);
 	public Users buscarPorId(Long id);
 	public void eliminar(Long id);
-	
+	public Users buscarPorUsername(String username);
 }

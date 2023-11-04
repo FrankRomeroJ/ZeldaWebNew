@@ -7,6 +7,6 @@ import sv.com.frj.zeldawebnew.models.entity.Roles;
 
 
 
-public interface RolesRespository extends CrudRepository<Roles, Long> {
+public interface RolesRepository extends CrudRepository<Roles, Long> {
 
 }

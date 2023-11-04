@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+	
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+	
+		<form th:action="@{/views/roles/save}" th:object="${roles}" method="post">
+			<div class="form-group row">
+				
+				<input type="hidden" th:field="*{id}">
+				
+				</div>
+				
+			<div class="form-group row">
+				<label class="col-md-2" for="users">Username:</label> 
+				<select th:field="*{users}" class="form-control form-control-sm col-md-4" id="users"> 
+					<option th:each="usuario:${users}"
+						th:value="${usuario.id}"
+						th:text="${usuario.username}"		
+					/>					
+				</select>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-md-2" for="grupos_roles">Roles:</label> 
+				<select th:field="*{grupos_roles}" class="form-control form-control-sm col-md-4" id="grupos_roles"> 
+					<option th:each="role:${grupos_roles}"
+						th:value="${role.rol}"
+						th:text="${role.rol}"		
+					/>					
+				</select>
+			</div>
+	
+			
+			<div class="card-footer bg-dark">
+				<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+			</div>
+			
+		</form>
+		</div>
+	</div>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+</html>

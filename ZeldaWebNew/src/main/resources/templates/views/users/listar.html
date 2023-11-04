@@ -23,6 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<th scope="col">Username</th>
 				<!--	<th scope="col">Password</th> -->
 					<th scope="col">Enabled</th>
+					<th scope="col" sec:authorize="hasAnyRole({'ROLE_ADMIN'})">Contraseña</th>
 					<th scope="col" sec:authorize="hasAnyRole({'ROLE_USER','ROLE_ADMIN'})">Editar</th>
 					<th scope="col" sec:authorize="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})">Eliminar</th>
 				</tr>
@@ -33,7 +34,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<td th:text="${us.username}"></td>
 				<!--	<td th:text="${us.password}"></td> -->
 					<td th:text="${us.enabled}"></td>
-					
+					<td sec:authorize="hasAnyRole({'ROLE_ADMIN'})">
+						<a class="btn btn-success btn-sm"  th:href="@{/views/users/cambiaclaveadmin/} + ${us.id}"
+							th:text="'Cambia Password'" title="Cambia Clave">
+						</a>
+					</td>	
 					<td sec:authorize="hasAnyRole({'ROLE_USER','ROLE_ADMIN'})">
 						<a class="btn btn-success btn-sm"  th:href="@{/views/users/edit/} + ${us.id}"
 							th:text="'Editar'" title="Editar Registro">

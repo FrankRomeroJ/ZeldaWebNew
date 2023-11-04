@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/users/cambiaContrasenaUser}" th:object="${nuevaclaveuser}" method="post">
+
+					<div class="form-group row">
+						<label class="col-md-2" for="passwordA">Password Anterior:</label>
+						<input type="password" th:field="*{passwordA}" class="form-control form-control-sm col-md-6"
+							id="passwordA" placeholder="passwordA">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('passwordA')}"
+							th:errors="*{passwordA}">
+						</small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="passwordN">Password Nuevo:</label>
+						<input type="password" th:field="*{passwordN}" class="form-control form-control-sm col-md-6"
+							id="passwordN" placeholder="passwordN">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('passwordN')}"
+							th:errors="*{passwordN}">
+						</small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="passwordR">Reescriba el Password Nuevo:</label>
+						<input type="password" th:field="*{passwordR}" class="form-control form-control-sm col-md-6"
+							id="passwordR" placeholder="passwordR">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('passwordR')}"
+							th:errors="*{passwordR}">
+						</small>
+					</div>
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+
+</html>

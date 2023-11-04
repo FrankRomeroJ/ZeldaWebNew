@@ -18,7 +18,7 @@ public class Grupos_roles implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String idrol;
+	private String rol;
 
 	private String descripcion;
 
@@ -31,21 +31,21 @@ public class Grupos_roles implements Serializable {
 	}
 	
 
-	public Grupos_roles(String idrol, String descripcion) {
+	public Grupos_roles(String rol, String descripcion) {
 		super();
-		this.idrol = idrol;
+		this.rol = rol;
 		this.descripcion = descripcion;
 		this.roles= new HashSet<Roles>();
 	}
 
 
-	public String getIdrol() {
-		return idrol;
+	public String getRol() {
+		return rol;
 	}
 
 
-	public void setIdrol(String idrol) {
-		this.idrol = idrol;
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 
@@ -71,7 +71,7 @@ public class Grupos_roles implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Grupos_roles [idrol=" + idrol + ", descripcion=" + descripcion + "]";
+		return "Grupos_roles [rol=" + rol + ", descripcion=" + descripcion + "]";
 	}
 
 
