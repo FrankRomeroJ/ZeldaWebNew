@@ -1,4 +1,4 @@
-package sv.com.frj.zeldawebnew.models.service;
+package sv.com.frj.zeldawebnew.models.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import sv.com.frj.zeldawebnew.models.entity.Cliente;
 import sv.com.frj.zeldawebnew.models.repository.ClienteRepository;
+import sv.com.frj.zeldawebnew.models.service.IClienteService;
 
 @Service
 public class ClienteServiceImpl implements IClienteService {

@@ -1,7 +1,7 @@
 package sv.com.frj.zeldawebnew.models.entity;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
+
 
 @Embeddable
 public class CambiaClaveUser {

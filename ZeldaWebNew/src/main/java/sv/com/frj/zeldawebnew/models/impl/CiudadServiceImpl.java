@@ -1,4 +1,4 @@
-package sv.com.frj.zeldawebnew.models.service;
+package sv.com.frj.zeldawebnew.models.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import sv.com.frj.zeldawebnew.models.entity.Ciudad;
 import sv.com.frj.zeldawebnew.models.repository.CiudadRespository;
+import sv.com.frj.zeldawebnew.models.service.ICiudadService;
 
 @Service
 public class CiudadServiceImpl implements ICiudadService {

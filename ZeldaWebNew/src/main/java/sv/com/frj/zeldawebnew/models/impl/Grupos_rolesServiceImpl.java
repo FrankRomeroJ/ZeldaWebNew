@@ -1,4 +1,4 @@
-package sv.com.frj.zeldawebnew.models.service;
+package sv.com.frj.zeldawebnew.models.impl;
 
 import java.util.List;
 
@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 
 import sv.com.frj.zeldawebnew.models.entity.Grupos_roles;
 import sv.com.frj.zeldawebnew.models.repository.Grupos_rolesRespository;
+import sv.com.frj.zeldawebnew.models.service.IGrupos_rolesService;
 
 
 
 @Service
-public class Grupos_rolesService implements IGrupos_rolesService {
+public class Grupos_rolesServiceImpl implements IGrupos_rolesService {
 	
 	@Autowired
 	private Grupos_rolesRespository grupos_rolesRepository;
