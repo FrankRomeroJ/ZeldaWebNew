@@ -25,14 +25,14 @@ public class MunicipiosServiceImpl implements IMunicipiosService {
 	}
 
 	@Override
-	public Municipios buscarPorId(Integer reg_municipio)  {		
-		return municipiosRepository.findById(reg_municipio).orElse(null);
+	public Municipios buscarPorId(Integer id)  {		
+		return municipiosRepository.findById(id).orElse(null);
 	}
 
 	
 	@Override
-	public void eliminar(Integer reg_municipio){		
-		municipiosRepository.deleteById(reg_municipio);
+	public void eliminar(Integer id){		
+		municipiosRepository.deleteById(id);
 	}
 	@Override
 	public List<Municipios> listarMunicipiosPorDescripcion(){
@@ -44,5 +44,11 @@ public class MunicipiosServiceImpl implements IMunicipiosService {
 		return listaMunicipios;
 	}
 
+	@Override
+	public List<Municipios> buscarPorIdDepartamentos(Integer idDepartamentos){
+		
+		return municipiosRepository.findByDepartamentos_Id(idDepartamentos);
+		
+	}
 	
 }

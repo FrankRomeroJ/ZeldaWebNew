@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import sv.com.frj.zeldawebnew.models.entity.Departamentos;
 import sv.com.frj.zeldawebnew.models.repository.DepartamentosRepository;
 import sv.com.frj.zeldawebnew.models.service.IDepartamentosService;
@@ -26,13 +25,13 @@ public class DepartamentosServiceImpl implements IDepartamentosService {
 	}
 
 	@Override
-	public Departamentos buscarPorId(Integer reg_depto)  {		
-		return departamentosRepository.findById(reg_depto).orElse(null);
+	public Departamentos buscarPorId(Integer id)  {		
+		return departamentosRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(Integer reg_depto){		
-		departamentosRepository.deleteById(reg_depto);
+	public void eliminar(Integer id){		
+		departamentosRepository.deleteById(id);
 	}
 
 	@Override
@@ -43,5 +42,10 @@ public class DepartamentosServiceImpl implements IDepartamentosService {
 		listaDepartamentos = departamentosRepository.ListOrederedByDescripcionAsc();
 		
 		return listaDepartamentos;
+	}
+	
+	@Override
+	public List<Departamentos> buscarPorIdPaises(Integer idPaises) {
+		return departamentosRepository.findByPaises_Id(idPaises);
 	}
 }

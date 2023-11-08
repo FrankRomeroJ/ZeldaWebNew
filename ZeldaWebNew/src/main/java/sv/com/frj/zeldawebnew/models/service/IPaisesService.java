@@ -12,8 +12,8 @@ import sv.com.frj.zeldawebnew.models.entity.Roles;
 		
 		public List<Paises> listarTodos();
 		public void guardar(Paises paises);
-		public Paises buscarPorId(Integer idpais);
-		public void eliminar(Integer idpais);
+		public Paises buscarPorId(Integer id);
+		public void eliminar(Integer id);
 		public List<Paises> listarPaisesActivos();
 		public List<Paises> listarPaisesPorNombrepais();
 	}

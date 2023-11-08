@@ -28,8 +28,8 @@ public class PaisesServiceImpl implements IPaisesService {
 	}
 
 	@Override
-	public Paises buscarPorId(Integer idpais)  {		
-		return paisesRepository.findById(idpais).orElse(null);
+	public Paises buscarPorId(Integer id)  {		
+		return paisesRepository.findById(id).orElse(null);
 	}
 
 	@Override

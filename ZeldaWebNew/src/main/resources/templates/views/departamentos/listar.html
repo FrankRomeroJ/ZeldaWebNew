@@ -17,17 +17,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	   <table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Reg_Depto</th>
-					<th scope="col">Id depto</th>
+					<th scope="col">Id</th>
 					<th scope="col">Descripcion</th>
 					<th scope="col">Pais</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="de:${departamentos}">
-					<th scope="row" th:text="${de.reg_depto}"></th>
-					<td th:text="${de.iddepto}"></td>
-				<!--	<td th:text="${us.password}"></td> -->
+					<th scope="row" th:text="${de.id}"></th>
 					<td th:text="${de.descripcion}"></td>
 					<td th:text="${de.paises.nombrepais}"></td>									
 				</tr>

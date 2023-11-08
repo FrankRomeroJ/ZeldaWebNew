@@ -11,9 +11,10 @@ import sv.com.frj.zeldawebnew.models.entity.Departamentos;
 		
 		public List<Departamentos> listarTodos();
 		public void guardar(Departamentos departamentos);
-		public Departamentos buscarPorId(Integer reg_depto);
-		public void eliminar(Integer reg_depto);
+		public Departamentos buscarPorId(Integer idPaises);
+		public void eliminar(Integer idPaises);
 		public List<Departamentos> listarDepartamentosPorDescripcion();
+		public List<Departamentos> buscarPorIdPaises(Integer idPaises);
 	}
 
 

@@ -78,13 +78,13 @@ public class PaisesController {
 	}
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
-	@GetMapping("/edit/{idpais}")
-	public String editar(@PathVariable("idpais") Integer idpais, Model model, RedirectAttributes attribute) {
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") Integer id, Model model, RedirectAttributes attribute) {
 			
 		Paises paises = null;
 		
-		if (idpais > 0) {
-			paises = paisesService.buscarPorId(idpais);
+		if (id > 0) {
+			paises = paisesService.buscarPorId(id);
 			
 			if (paises == null) {
 				System.out.println("Error: El ID del paises no existe!");
@@ -114,13 +114,13 @@ public class PaisesController {
 	}
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
-	@GetMapping("/delete/{idpais}")
-	public String eliminar(@PathVariable("idpaises") Integer idpais, RedirectAttributes attribute) {
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Integer id, RedirectAttributes attribute) {
 
 		Paises paises = null;
 		
-		if (idpais > 0) {
-			paises = paisesService.buscarPorId(idpais);
+		if (id > 0) {
+			paises = paisesService.buscarPorId(id);
 			
 			if (paises == null) {
 				System.out.println("Error: El ID del pais no existe!");
@@ -133,7 +133,7 @@ public class PaisesController {
 			return "redirect:/views/paises/";
 		}		
 		
-		paisesService.eliminar(idpais);
+		paisesService.eliminar(id);
 		System.out.println("Registro Eliminado con Exito!");
 		attribute.addFlashAttribute("warning", "Registro Eliminado con Exito!");
 

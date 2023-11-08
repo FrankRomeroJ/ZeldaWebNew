@@ -19,11 +19,9 @@ public class Paises implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idpais;
+	private Integer id; 
 	
 	private String nombrepais;
-	
-	private String iniciales;
 	
 	private boolean estatus;
 	
@@ -33,30 +31,24 @@ public class Paises implements Serializable{
 		
 	}
 
-	public Paises(Integer idpais, String nombrepais, 
-			String iniciales, boolean estatus) {
+	public Paises(Integer id, String nombrepais, 
+			 boolean estatus) {
 		super();
-		this.idpais = idpais;
+		this.id = id;
 		this.nombrepais = nombrepais;
-		this.iniciales = iniciales;
+	
 		this.estatus = estatus;
 		
 	}
 
-	public boolean isEstatus() {
-		return estatus;
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setEstatus(boolean estatus) {
-		this.estatus = estatus;
-	}
-
-	public Integer getIdpais() {
-		return idpais;
-	}
-
-	public void setIdpais(Integer idpais) {
-		this.idpais = idpais;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNombrepais() {
@@ -67,20 +59,17 @@ public class Paises implements Serializable{
 		this.nombrepais = nombrepais;
 	}
 
-	public String getIniciales() {
-		return iniciales;
+	public boolean isEstatus() {
+		return estatus;
 	}
 
-	public void setIniciales(String iniciales) {
-		this.iniciales = iniciales;
+	public void setEstatus(boolean estatus) {
+		this.estatus = estatus;
 	}
-
-	
 
 	@Override
 	public String toString() {
-		return "Paises [idpais=" + idpais + ", nombrepais=" + nombrepais + ", iniciales=" + iniciales
-				+ "estatus" + estatus + "]";
+		return "Paises [id=" + id + ", nombrepais=" + nombrepais + ", estatus" + estatus + "]";
 	}
 
 	

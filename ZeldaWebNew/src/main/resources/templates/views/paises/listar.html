@@ -19,7 +19,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				<tr>
 					<th scope="col">Id Pais</th>
 					<th scope="col">Nombre del País</th>
-					<th scope="col">Iniciales</th>
 					<th scope="col">Estatus</th>
 					<th scope="col" sec:authorize="hasAnyRole({'ROLE_ADMIN'})">Activar</th>
 					
@@ -27,20 +26,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			</thead>
 			<tbody>
 				<tr th:each="pa:${paises}">
-					<th scope="row" th:text="${pa.idpais}"></th>
+					<td scope="row" th:text="${pa.id}"></td>
 					<td th:text="${pa.nombrepais}"></td>
-				<!--	<td th:text="${us.password}"></td> -->
-					<td th:text="${pa.iniciales}"></td>
 					<td th:text="${pa.estatus}"></td>
 					
 					<td sec:authorize="hasAnyRole({'ROLE_ADMIN'})">
 						<div th:switch="${pa.estatus}">
 						<div th:case = false>
-						<a class="btn btn-warning btn-sm"  th:href="@{/views/paises/edit/} + ${pa.idpais}"
+						<a class="btn btn-warning btn-sm"  th:href="@{/views/paises/edit/} + ${pa.id}"
 						 th:text='Activar' title="Editar Registro">
 						</a></div>
 						<div th:case = true>
-						<a class="btn btn-success btn-sm"  th:href="@{/views/paises/edit/} + ${pa.idpais}"
+						<a class="btn btn-success btn-sm"  th:href="@{/views/paises/edit/} + ${pa.id}"
 						 th:text='Desactivar' title="Editar Registro">
 						</a></div>
 						
