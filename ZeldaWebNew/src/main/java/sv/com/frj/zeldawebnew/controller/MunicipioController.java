@@ -7,28 +7,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import sv.com.frj.zeldawebnew.models.entity.Municipios;
-import sv.com.frj.zeldawebnew.models.service.IMunicipiosService;
+import sv.com.frj.zeldawebnew.models.entity.Municipio;
+import sv.com.frj.zeldawebnew.models.service.IMunicipioService;
 
 
 @Controller
-@RequestMapping("/views/municipios")
-public class MunicipiosController {
+@RequestMapping("/views/municipio")
+public class MunicipioController {
 	
 	@Autowired
-	private IMunicipiosService municipiosService;
+	private IMunicipioService municipioService;
 
 	
 
 	
 	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/")
-	public String listarMunicipios(Model model) {
-		List<Municipios> listadoMunicipios = municipiosService.listarTodos();
+	public String listarMunicipio(Model model) {
+		List<Municipio> listadoMunicipio = municipioService.listarTodos();
 		model.addAttribute("titulo", "Lista de Municipios");
-		model.addAttribute("municipios", listadoMunicipios);
+		model.addAttribute("municipio", listadoMunicipio);
 
-		return "/views/municipios/listar";
+		return "/views/municipio/listar";
 	}
 
 

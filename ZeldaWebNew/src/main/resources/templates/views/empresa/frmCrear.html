@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/empresa/save}" th:object="${empresa}" method="post">
+					<div class="form-group row">
+
+						<input type="hidden" th:field="*{id}">
+						<label class="col-md-2" for="razon_social">Razon Social:</label>
+						<input type="text" th:field="*{razon_social}" class="form-control form-control-sm col-md-6"
+							id="razon_social" placeholder="Razon Social">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('razon_social')}"
+							th:errors="*{razon_social}">
+						</small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="nit">NIT:</label>
+						<input type="text" th:field="*{nit}" class="form-control form-control-sm col-md-6" id="nit"
+							placeholder="NIT">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nit')}" th:errors="*{nit}">
+						</small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="registro_iva">Registro IVA</label>
+						<input type="text" th:field="*{registro_iva}" class="form-control form-control-sm col-md-6"
+							id="registro_iva" placeholder="Registro IVA">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('registro_iva')}"
+							th:errors="*{registro_iva}">
+						</small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="direccion">Dirección:</label>
+						<input type="text" th:field="*{direccion}" class="form-control form-control-sm col-md-6"
+							id="email" placeholder="Email">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('direccion')}" 
+						th:errors="*{direccion}"></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="giro">Giro:</label>
+						<input type="text" th:field="*{giro}" class="form-control form-control-sm col-md-6"
+							id="giro" placeholder="Giro">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('giro')}" 
+						th:errors="*{giro}"></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="nombre_corto">Nombre Corto:</label>
+						<input type="text" th:field="*{nombre_corto}" class="form-control form-control-sm col-md-6"
+							id="nombre_corto" placeholder="Nombre Corto">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre_corto')}" 
+						th:errors="*{nombre_corto}"></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="representante_legal">Representante Legal:</label>
+						<input type="text" th:field="*{representante_legal}" class="form-control form-control-sm col-md-6"
+							id="representante_legal" placeholder="Representante Legal">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('representante_legal')}" 
+						th:errors="*{representante_legal}"></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="telefono">Teléfono:</label>
+						<input type="text" th:field="*{telefono}" class="form-control form-control-sm col-md-6"
+							id="telefono" placeholder="Telefono">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('telefono')}" 
+						th:errors="*{telefono}"></small>
+					</div>
+						<div class="form-group row">
+						<label class="col-md-2" for="email">E-mail:</label>
+						<input type="text" th:field="*{email}" class="form-control form-control-sm col-md-6"
+							id="email" placeholder="email">
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" 
+						th:errors="*{email}"></small>
+					</div>
+					
+					
+					<div class="form-group row">
+						<label class="col-md-2" for="pais">País:</label>
+						<select name="pais" id="pais" title="Seleccione un Pais">
+						<option value="" disabled="disabled" selected>--País--</option> 
+						<option th:each="pa:${paises}" th:value="${pa.id}" th:text="${pa.nombrepais}" />
+						</select>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="departamento">Departamento:</label>
+						<select name="departamento" id="departamento" title="Seleccione un Departamento">
+						<option value="" disabled="disabled" selected>--Departamento--</option> 
+						<option th:each="de:${departamento}" 
+						th:value="${de.id}" th:text="${de.descripcion}" />
+						</select>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="municipio">Municipio:</label>
+						<select name="municipio" id="municipio" title="Seleccione un Municipio">
+						<option value="" disabled="disabled" selected="selected">--Municipio--</option> 
+						<option th:each="mu:${municipio}" 
+						th:value="${de.id}" th:text="${de.descripcion}" />
+						</select>
+					</div>
+	<!--			<div class="form-group row">
+						<label class="col-md-2" for="ciudad">Ciudad:</label>
+						<select th:field="*{ciudad}" class="form-control form-control-sm col-md-6" id="ciudad">
+							<option th:each="ciudad:${ciudades}" th:value="${ciudad.id}" th:text="${ciudad.ciudad}" />
+						</select>
+					</div> -->
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+	
+	
+	<script th:src="@{/js/jquery.min.js}"></script>
+	
+	<script th:inline="javascript">
+	/* Variable Javascript que guarda el contextPath para formar la URL a la cual haremos la peticion*/
+	var contextPath = /*[[@{http://localhost:8080/views/empresa/buscarPorPais}]]*/
+	var contextPath2 = /*[[@{http://localhost:8080/views/empresa/buscarPorDepartamento}]]*/
+	
+	/* ------- BUSCAR DEPARTAMENTOS SEGUN PAIS SELECCIONADO -------- */
+
+	$('#pais').change(
+			function() {
+				$.getJSON(contextPath,
+								{
+									idPais : $(this).val(),
+									ajax : 'true'
+								},
+								function(data) {
+									var html = '<option value="">--Seleccione Departamento--</option>';
+									var len = data.length;
+									for (var i = 0; i < len; i++) {
+										html += '<option value="' + data[i].id + '">'
+												+ data[i].descripcion
+												+ '</option>';
+									}
+									html += '</option>';
+									$('#departamento').html(html);
+								});
+			});
+			
+			
+			/* --------- BUSCAR MUNICIPIOS SEGUN EL DEPARTAMENTO SELECCIONADO --------- */
+			$('#departamento').change(
+			function() {				
+				$.getJSON(contextPath2,
+								{
+									idDepartamento : $(this).val(),
+									ajax : 'true'
+								},
+								function(data) {
+									var html = '<option value="">--Seleccione Municipio--</option>';
+									var len = data.length;
+									for (var i = 0; i < len; i++) {
+										html += '<option value="' + data[i].id + '">'
+												+ data[i].descripcion
+												+ '</option>';
+									}
+									html += '</option>';
+									$('#municipio').html(html);
+								});
+			});
+	</script>
+
+</body>
+
+</html>

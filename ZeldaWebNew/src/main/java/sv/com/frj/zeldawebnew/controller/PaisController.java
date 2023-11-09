@@ -13,131 +13,131 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sv.com.frj.zeldawebnew.models.entity.Paises;
-import sv.com.frj.zeldawebnew.models.service.IPaisesService;
+import sv.com.frj.zeldawebnew.models.entity.Pais;
+import sv.com.frj.zeldawebnew.models.service.IPaisService;
 
 @Controller
-@RequestMapping("/views/paises")
-public class PaisesController {
+@RequestMapping("/views/pais")
+public class PaisController {
 	
 	@Autowired
-	private IPaisesService paisesService;
+	private IPaisService paisService;
 
 	
 
 	
 	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/")
-	public String listarPaises(Model model) {
-		List<Paises> listadoPaises = paisesService.listarPaisesPorNombrepais();
-		model.addAttribute("titulo", "Lista de Paises");
-		model.addAttribute("paises", listadoPaises);
+	public String listarpais(Model model) {
+		List<Pais> listadopais = paisService.listarPaisesPorNombrepais();
+		model.addAttribute("titulo", "Lista de pais");
+		model.addAttribute("pais", listadopais);
 
-		return "/views/paises/listar";
+		return "/views/pais/listar";
 	}
 	
 	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/listaactivos")
-	public String listarPaisesActivos(Model model) {
-		List<Paises> listadoPaises = paisesService.listarPaisesActivos();
-		model.addAttribute("titulo", "Lista de PaisesActivos");
-		model.addAttribute("paises", listadoPaises);
+	public String listarpaisActivos(Model model) {
+		List<Pais> listadopais = paisService.listarPaisesActivos();
+		model.addAttribute("titulo", "Lista de paisActivos");
+		model.addAttribute("pais", listadopais);
 
-		return "/views/paises/listar";
+		return "/views/pais/listar";
 	}
 
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/create")
 	public String crear(Model model) {
 
-		Paises paises = new Paises();
+		Pais pais = new Pais();
 
 		model.addAttribute("titulo", "Formulario: Nuevo Pais");
-		model.addAttribute("paises", paises);
+		model.addAttribute("pais", pais);
 
-		return "/views/paises/frmCrear";
+		return "/views/pais/frmCrear";
 	}
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
 	@PostMapping("/save")
-	public String guardar(@Valid @ModelAttribute Paises paises, 
+	public String guardar(@Valid @ModelAttribute Pais pais, 
 			BindingResult result,
 			Model model, RedirectAttributes attribute) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario: Nuevo Pais");
-			model.addAttribute("paises", paises);
+			model.addAttribute("pais", pais);
 			System.out.println("Existieron errores en el formulario");			
-			return "/views/paises/frmCrear";
+			return "/views/pais/frmCrear";
 		}
 
-		paisesService.guardar(paises);
-		System.out.println("paises guardado con exito!");
+		paisService.guardar(pais);
+		System.out.println("pais guardado con exito!");
 		attribute.addFlashAttribute("success", "Cliente guardado con exito!");
-		return "redirect:/views/paises/";
+		return "redirect:/views/pais/";
 	}
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id") Integer id, Model model, RedirectAttributes attribute) {
 			
-		Paises paises = null;
+		Pais pais = null;
 		
 		if (id > 0) {
-			paises = paisesService.buscarPorId(id);
+			pais = paisService.buscarPorId(id);
 			
-			if (paises == null) {
-				System.out.println("Error: El ID del paises no existe!");
-				attribute.addFlashAttribute("error", "ATENCION: El ID del paises no existe!");
-				return "redirect:/views/paises/";
+			if (pais == null) {
+				System.out.println("Error: El ID del pais no existe!");
+				attribute.addFlashAttribute("error", "ATENCION: El ID del pais no existe!");
+				return "redirect:/views/pais/";
 			}
 		}else {
-			System.out.println("Error: Error con el ID del Paises");
-			attribute.addFlashAttribute("error", "ATENCION: Error con el ID del paises");
-			return "redirect:/views/paises/";
+			System.out.println("Error: Error con el ID del pais");
+			attribute.addFlashAttribute("error", "ATENCION: Error con el ID del pais");
+			return "redirect:/views/pais/";
 		}
 		
-		if (paises.isEstatus()) {
+		if (pais.isEstatus()) {
 			
-			paises.setEstatus(false);
+			pais.setEstatus(false);
 		}else {
-			paises.setEstatus(true);
+			pais.setEstatus(true);
 		}
 
-		model.addAttribute("titulo", "Formulario: Editar Paises");
-		model.addAttribute("paises", paises);
+		model.addAttribute("titulo", "Formulario: Editar pais");
+		model.addAttribute("pais", pais);
 		
-		paisesService.guardar(paises);
+		paisService.guardar(pais);
 		
 
-		return "redirect:/views/paises/";
+		return "redirect:/views/pais/";
 	}
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Integer id, RedirectAttributes attribute) {
 
-		Paises paises = null;
+		Pais pais = null;
 		
 		if (id > 0) {
-			paises = paisesService.buscarPorId(id);
+			pais = paisService.buscarPorId(id);
 			
-			if (paises == null) {
+			if (pais == null) {
 				System.out.println("Error: El ID del pais no existe!");
 				attribute.addFlashAttribute("error", "ATENCION: El ID del pais no existe!");
-				return "redirect:/views/paises/";
+				return "redirect:/views/pais/";
 			}
 		}else {
-			System.out.println("Error: Error con el ID del Paises");
-			attribute.addFlashAttribute("error", "ATENCION: Error con el ID del Paises!");
-			return "redirect:/views/paises/";
+			System.out.println("Error: Error con el ID del pais");
+			attribute.addFlashAttribute("error", "ATENCION: Error con el ID del pais!");
+			return "redirect:/views/pais/";
 		}		
 		
-		paisesService.eliminar(id);
+		paisService.eliminar(id);
 		System.out.println("Registro Eliminado con Exito!");
 		attribute.addFlashAttribute("warning", "Registro Eliminado con Exito!");
 
-		return "redirect:/views/paises/";
+		return "redirect:/views/pais/";
 	}
 
 }

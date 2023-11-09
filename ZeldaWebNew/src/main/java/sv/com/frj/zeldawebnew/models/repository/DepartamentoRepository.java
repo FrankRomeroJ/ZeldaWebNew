@@ -9,15 +9,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import sv.com.frj.zeldawebnew.models.entity.Departamentos;
+import sv.com.frj.zeldawebnew.models.entity.Departamento;
 
 @Repository
-public interface DepartamentosRepository extends JpaRepository<Departamentos, Integer>{
+public interface DepartamentoRepository extends JpaRepository<Departamento, Integer>{
 
 	
-	@Query("Select d from Departamentos d order by d.descripcion")
-	List<Departamentos> ListOrederedByDescripcionAsc();
+	@Query("Select d from Departamento d order by d.descripcion")
+	List<Departamento> ListOrederedByDescripcionAsc();
 	
-	List<Departamentos> findByPaises_Id(Integer idPaises);
+	List<Departamento> findByPais_Id(Integer idPais);
 
 }

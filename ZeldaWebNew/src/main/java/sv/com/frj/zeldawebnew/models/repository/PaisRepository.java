@@ -9,16 +9,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import sv.com.frj.zeldawebnew.models.entity.Paises;
+import sv.com.frj.zeldawebnew.models.entity.Pais;
 
 
 @Repository
-public interface PaisesRepository extends CrudRepository<Paises, Integer>{
+public interface PaisRepository extends CrudRepository<Pais, Integer>{
 
-	@Query("Select p from Paises p where p.estatus = 1" )
-	List<Paises> findByEstatusActivo();
+	@Query("Select p from Pais p where p.estatus = 1" )
+	List<Pais> findByEstatusActivo();
 	
-	@Query("Select p from Paises p order by p.nombrepais")
-	List<Paises> ListOrederedByNombrepaisAsc();
+	@Query("Select p from Pais p order by p.nombrepais")
+	List<Pais> ListOrederedByNombrepaisAsc();
 
 }

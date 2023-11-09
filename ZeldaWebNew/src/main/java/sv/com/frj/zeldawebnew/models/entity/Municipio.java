@@ -2,7 +2,7 @@ package sv.com.frj.zeldawebnew.models.entity;
 
 import java.io.Serializable;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="departamentos")
-public class Departamentos implements Serializable{
+@Table(name = "municipio")
+public class Municipio implements Serializable{
 
 	/**
 	 * 
@@ -22,58 +22,73 @@ public class Departamentos implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name="id")
+	private Integer id;  
+	
 	
 	private String descripcion;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="paises_id", referencedColumnName = "id")
-	private Paises paises;
+	@JoinColumn(name="departamento_id", referencedColumnName = "id")
+	private Departamento departamento;
 
-	public Departamentos() {
-		
+	
+	
+	public Municipio() {
 	}
 
-	public Departamentos(Integer id, String descripcion, Paises paises) {
+
+		
+	public Municipio(Integer id, String descripcion, Departamento departamento) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
-		this.paises = paises;
-		
+		this.departamento = departamento;
 	}
 
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-	public Paises getPaises() {
-		return paises;
+
+	public Departamento getDepartamento() {
+		return departamento;
 	}
 
-	public void setPaises(Paises paises) {
-		this.paises = paises;
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
+
+
 
 	@Override
 	public String toString() {
-		return "Departamentos [id=" + id + ", descripcion=" + descripcion +  ", paises=" + paises + "]";
+		return "Municipio [id=" + id + ", descripcion=" + descripcion + ", departamento=" + departamento + "]";
 	}
+
+
+
 	
 
-		
+
+	
 	
 }

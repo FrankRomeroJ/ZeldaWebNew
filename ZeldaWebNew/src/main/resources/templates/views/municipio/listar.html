@@ -18,15 +18,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Id</th>
+					
 					<th scope="col">Descripcion</th>
-					<th scope="col">Pais</th>
+					<th scope="col">Departamento</th>
+					<th scope="col">Pais</th> 
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="de:${departamentos}">
-					<th scope="row" th:text="${de.id}"></th>
-					<td th:text="${de.descripcion}"></td>
-					<td th:text="${de.paises.nombrepais}"></td>									
+				<tr th:each="mu:${municipio}">
+					<th scope="row" th:text="${mu.id}"></th>
+					<td th:text="${mu.descripcion}"></td>
+					<td th:text="${mu.departamento.descripcion}"></td>
+				<td th:text="${mu.departamento.pais.nombrepais}"></td>								
 				</tr>
 			</tbody>
 		</table>

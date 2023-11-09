@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="paises")
-public class Paises implements Serializable{
+@Table(name="pais")
+public class Pais implements Serializable{
 
 	/**
 	 * 
@@ -26,17 +26,16 @@ public class Paises implements Serializable{
 	private boolean estatus;
 	
 
-	public Paises() {
+	public Pais() {
 		
 		
 	}
 
-	public Paises(Integer id, String nombrepais, 
+	public Pais(Integer id, String nombrepais, 
 			 boolean estatus) {
 		super();
 		this.id = id;
 		this.nombrepais = nombrepais;
-	
 		this.estatus = estatus;
 		
 	}
@@ -69,7 +68,7 @@ public class Paises implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Paises [id=" + id + ", nombrepais=" + nombrepais + ", estatus" + estatus + "]";
+		return "Pais [id=" + id + ", nombrepais=" + nombrepais + ", estatus=" + estatus + "]";
 	}
 
 	
