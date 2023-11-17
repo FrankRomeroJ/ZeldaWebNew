@@ -65,11 +65,6 @@ public class Empresa implements Serializable{
 		super();
 	}
 
-	
-
-	
-
-
 
 	public Empresa(Integer id, @NotEmpty String razon_social, @NotEmpty String nit, @NotEmpty String registro_iva,
 			@NotEmpty String direccion, @NotEmpty String giro, @NotEmpty String nombre_corto,
@@ -247,9 +242,16 @@ public class Empresa implements Serializable{
 
 
 
-	public void setMunicipios(Municipio municipio) {
+	public void setMunicipio(Municipio municipio) {
 		this.municipio = municipio;
 	}
+	
+	public boolean isSelected(Integer id){
+        if (id != null) {
+            return id.equals(id);
+        }
+        return false;
+    } 
 
 
 	@Override

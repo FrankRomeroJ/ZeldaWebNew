@@ -49,14 +49,8 @@ public class EmpresaController {
 	@GetMapping("/")
 	public String listarEmpresas(Model model) {
 		List<Empresa> empresa = empresaService.listarTodos();
-		// List<Departamentos> listadoDepartamentos =
-		// departamentosService.buscarPorIdpais(idpais);
-		// List<Municipios> listadoMunicipios =
-		// municipiosService.buscarPorReg_depto(reg_depto);
 		model.addAttribute("titulo", "Lista de Empresas");
 		model.addAttribute("empresa", empresa);
-		// model.addAttribute("departamento", listadoDepartamento);
-		// model.addAttribute("municipio", listadoMunicipio);
 
 		return "/views/empresa/listar";
 	}
@@ -80,7 +74,28 @@ public class EmpresaController {
 
 		return municipioService.buscarPorIdDepartamento(idDepartamento);
 	}
+	
+	@GetMapping(value = "/buscarPorMunicipio")
+	public @ResponseBody Municipio MunicipioPorId(
+			@RequestParam(value = "idMunicipio", required = true) Integer idMunicipio) {
 
+		return municipioService.buscarPorId(idMunicipio);
+	}
+
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
+	@GetMapping("/consultar/{id}")
+	public String consultar(@PathVariable("id") Integer id, Model model, RedirectAttributes attribute) {
+
+		Empresa empresa = empresaService.buscarPorId(id);	
+		
+		model.addAttribute("titulo", "Formulario: Consulta de Empresa");
+		model.addAttribute("empresa", empresa);
+		// model.addAttribute("pais",listaPais);
+		
+
+		return "/views/empresa/frmConsultar";
+	}
+	
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/create")
 	public String crear(Model model) {
@@ -100,22 +115,27 @@ public class EmpresaController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@PostMapping("/save")
-	public String guardar(@Valid @ModelAttribute Empresa empresa, BindingResult result, Model model,
+	public String guardar(@Valid @ModelAttribute Empresa empresa, 
+			@Valid @RequestParam("pais") Pais pais, 
+			@Valid @RequestParam("departamento") Departamento departamento, 
+			@Valid @RequestParam("municipio") Municipio municipio, 
+						BindingResult result, Model model,
 			RedirectAttributes attribute) {
-//		List<Pais> listaPais = paisService.listarPaisesActivos();
-		List<Departamento> listadoDepartamento = departamentoService.buscarPorIdPais(idPais);
-		List<Municipio> listadoMunicipio = municipioService.buscarPorIdDepartamento(idDepartamento);
+		Integer mipais =pais.getId();
+		Integer midepartamento=departamento.getId();
+		Integer mimunicipio = municipio.getId();
+		empresa.setPais(paisService.buscarPorId(mipais));
+	    empresa.setDepartamento(departamentoService.buscarPorId(midepartamento)) ;
+		empresa.setMunicipio(municipioService.buscarPorId(mimunicipio));
 
+		
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario: Nuevo Cliente");
 			model.addAttribute("empresa", empresa);
-//			model.addAttribute("pais",listaPais);
-			model.addAttribute("departamento", listadoDepartamento);
-			model.addAttribute("municipio", listadoMunicipio);
 			System.out.println("Existieron errores en el formulario");
 			return "/views/empresa/frmCrear";
 		}
-
+	
 		empresaService.guardar(empresa);
 		System.out.println("Empresa guardada con exito!");
 		attribute.addFlashAttribute("success", "Empresa guardado con exito!");
@@ -141,17 +161,18 @@ public class EmpresaController {
 			attribute.addFlashAttribute("error", "ATENCION: Error con el ID de la empresa");
 			return "redirect:/views/empresa/";
 		}
-		List<Pais> listaPais = paisService.listarPaisesActivos();
-		List<Departamento> listadoDepartamento = departamentoService.buscarPorIdPais(idPais);
+		
+		
+		List<Departamento> listadoDepartamento = departamentoService.buscarPorIdPais(empresa.getPais().getId());
 		List<Municipio> listadoMunicipio = municipioService.buscarPorIdDepartamento(idDepartamento);
 
-		model.addAttribute("titulo", "Formulario: Editar Cliente");
+		model.addAttribute("titulo", "Formulario: Editar Empresa");
 		model.addAttribute("empresa", empresa);
 		// model.addAttribute("pais",listaPais);
 		model.addAttribute("departamento", listadoDepartamento);
 		model.addAttribute("municipio", listadoMunicipio);
 
-		return "/views/empresa/frmCrear";
+		return "/views/empresa/frmEditar";
 	}
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })

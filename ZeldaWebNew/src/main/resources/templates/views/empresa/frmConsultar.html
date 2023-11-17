@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/empresa/}" th:object="${empresa}" method="get">
+					<div class="form-group row">
+
+						<input type="hidden" th:field="*{id}">
+
+						<label class="col-md-2" for="razon_social">Razon Social:</label>
+						<input type="text" th:field="*{razon_social}" class="form-control form-control-sm col-md-6"
+							id="razon_social" placeholder="Razon Social">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="nit">NIT:</label>
+						<input type="text" th:field="*{nit}" class="form-control form-control-sm col-md-6" id="nit">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="registro_iva">Registro IVA</label>
+						<input type="text" th:field="*{registro_iva}" class="form-control form-control-sm col-md-6"
+							id="registro_iva">
+					</div>
+
+
+					<div class="form-group row">
+						<label class="col-md-2" for="pais">País</label>
+						<input type="text" th:field="${empresa.pais.nombrepais}"
+							class="form-control form-control-sm col-md-6" id="pais">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="departamento">Departamento</label>
+						<input type="text" th:field="${empresa.departamento.descripcion}"
+							class="form-control form-control-sm col-md-6" id="departamento">
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="municipio">Municipio</label>
+						<input type="text" th:field="${empresa.municipio.descripcion}"
+							class="form-control form-control-sm col-md-6" id="municipio">
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="direccion">Dirección:</label>
+						<input type="text" th:field="*{direccion}" class="form-control form-control-sm col-md-6"
+							id="email" >
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="giro">Giro:</label>
+						<input type="text" th:field="*{giro}" class="form-control form-control-sm col-md-6" id="giro">
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="nombre_corto">Nombre Corto:</label>
+						<input type="text" th:field="*{nombre_corto}" class="form-control form-control-sm col-md-6"
+							id="nombre_corto" >
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="representante_legal">Representante Legal:</label>
+						<input type="text" th:field="*{representante_legal}"
+							class="form-control form-control-sm col-md-6" id="representante_legal">
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="telefono">Teléfono:</label>
+						<input type="text" th:field="*{telefono}" class="form-control form-control-sm col-md-6"
+							id="telefono">
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="email">E-mail:</label>
+						<input type="text" th:field="*{email}" class="form-control form-control-sm col-md-6" id="email">
+					</div>
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Regresar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+f
+</body>
+
+</html>
