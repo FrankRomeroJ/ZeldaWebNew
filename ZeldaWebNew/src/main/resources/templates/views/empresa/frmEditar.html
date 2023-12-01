@@ -41,29 +41,30 @@
 							th:errors="*{registro_iva}">
 						</small>
 					</div>
-					
-				<div class="form-group row">
+
+					<div class="form-group row">
 						<label class="col-md-2" for="pais">País:</label>
 						<select name="pais" id="pais" title="Seleccione un Pais">
-						<option th:value="${empresa.pais.id}" th:text="${empresa.pais.nombrepais}">---Pais---</option>  
-						<option th:each="pa:${paises}" th:value="${pa.id}" th:text="${pa.nombrepais}" />
+							<option th:each="pa:${paises}" th:value="${pa.id}"
+								th:selected="(${pa.id} == ${empresa.pais.id})" th:text="${pa.nombrepais}" />
 						</select>
 					</div>
-				
-			
+
+
 					<div class="form-group row">
 						<label class="col-md-2" for="departamento">Departamento:</label>
-					<select name="departamento" id="departamento" title="Seleccione un Departamento">
-					<option th:value="${empresa.departamento.id}" th:text="${empresa.departamento.descripcion}">--Departamento--</option>
-						<option th:each="de:${departamento}" th:value="${de.id}" th:text="${de.descripcion}" />
+						<select name="departamento" id="departamento" title="Seleccione un Departamento">
+							<option th:each="de:${departamento}" th:value="${de.id}"
+								th:selected="(${de.id} == ${empresa.departamento.id})" th:text="${de.descripcion}" />
 						</select>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2" for="municipio">Municipio:</label>
 						<select name="municipio" id="municipio" title="Seleccione un Municipio">
-							<option th:value="${empresa.municipio.id}" th:text="${empresa.municipio.descripcion}" >--Municipio--</option>
-							<option th:each="mu:${municipio}" th:value="${mu.id}" th:text="${mu.descripcion}" />
+							<option th:each="mu:${municipio}" th:value="${mu.id}"
+								th:selected="(${mu.id} == ${empresa.municipio.id})" th:text="${mu.descripcion}" />
 						</select>
+						<input type="hidden" name="municipioid" id="municipioid" th:value="${empresa.municipio.id}">
 					</div>
 
 					<div class="form-group row">
@@ -153,7 +154,7 @@
 								ajax: 'true'
 							},
 							function (data) {
-								var html = '<option value="">--Seleccione Departamento--</option>'; 
+								var html = '<option value="">--Seleccione Departamento--</option>';
 								var len = data.length;
 								for (var i = 0; i < len; i++) {
 									html += '<option value="' + data[i].id + '">'
@@ -187,7 +188,26 @@
 						});
 				});
 
+			$(document).ready(
+				function () {
+					$.getJSON(contextPath2,
+						{
+							idDepartamento: $('#departamento').val(),
+							ajax: 'true'
+						},
+						function (data) {
 
+							var html = '<option value="">--Seleccione Municipio--</option>';
+							var len = data.length;
+							for (var i = 0; i < len; i++) {
+								html += '<option value="' + data[i].id + '" ' + ((data[i].id == $('#municipioid').val()) ? 'selected="selected"' : '') + ' >'
+									+ data[i].descripcion
+									+ '</option>';
+							}
+							html += '</option>';
+							$('#municipio').html(html);
+						});
+				});
 		</script>
 	</th:block>
 	</th>

@@ -1,6 +1,7 @@
 package sv.com.frj.zeldawebnew.models.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="pais")
 public class Pais implements Serializable{
+
+	
 
 	/**
 	 * 
@@ -72,7 +75,22 @@ public class Pais implements Serializable{
 	}
 
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(estatus, id, nombrepais);
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pais other = (Pais) obj;
+		return estatus == other.estatus && Objects.equals(id, other.id) && Objects.equals(nombrepais, other.nombrepais);
+	}
 	
 	
 	

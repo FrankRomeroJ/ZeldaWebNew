@@ -70,7 +70,7 @@ public class Grupos_rolesController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/edit/{rol}")
-	public String editar(@PathVariable("rol") String rol, Model model, RedirectAttributes attribute) {
+	public String editar(@PathVariable String rol, Model model, RedirectAttributes attribute) {
 
 		Grupos_roles grupos_roles = new Grupos_roles();
 
@@ -90,7 +90,7 @@ public class Grupos_rolesController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/delete/{rol}")
-	public String eliminar(@PathVariable("rol") String rol, RedirectAttributes attribute) {
+	public String eliminar(@PathVariable String rol, RedirectAttributes attribute) {
 
 		Grupos_roles grupos_roles = null;
 

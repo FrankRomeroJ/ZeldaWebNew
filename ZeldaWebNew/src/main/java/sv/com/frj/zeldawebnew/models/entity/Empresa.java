@@ -1,6 +1,7 @@
 package sv.com.frj.zeldawebnew.models.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -260,6 +261,33 @@ public class Empresa implements Serializable{
 				+ registro_iva + ", direccion=" + direccion + ", giro=" + giro + ", nombre_corto=" + nombre_corto
 				+ ", representante_legal=" + representante_legal + ", telefono=" + telefono + ", email=" + email
 				+ ", pais=" + pais + ", departamento=" + departamento + ", municipio=" + municipio + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(departamento, direccion, email, giro, id, municipio, nit, nombre_corto, pais, razon_social,
+				registro_iva, representante_legal, telefono);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		return Objects.equals(departamento, other.departamento) && Objects.equals(direccion, other.direccion)
+				&& Objects.equals(email, other.email) && Objects.equals(giro, other.giro)
+				&& Objects.equals(id, other.id) && Objects.equals(municipio, other.municipio)
+				&& Objects.equals(nit, other.nit) && Objects.equals(nombre_corto, other.nombre_corto)
+				&& Objects.equals(pais, other.pais) && Objects.equals(razon_social, other.razon_social)
+				&& Objects.equals(registro_iva, other.registro_iva)
+				&& Objects.equals(representante_legal, other.representante_legal)
+				&& Objects.equals(telefono, other.telefono);
 	}
 
 

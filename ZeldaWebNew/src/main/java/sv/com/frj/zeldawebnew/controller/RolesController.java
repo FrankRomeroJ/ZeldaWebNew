@@ -86,7 +86,7 @@ public class RolesController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") Long id, Model model, RedirectAttributes attribute) {
+	public String editar(@PathVariable Long id, Model model, RedirectAttributes attribute) {
 
 		Roles roles = null;
 
@@ -119,7 +119,7 @@ public class RolesController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable("id") Long id, RedirectAttributes attribute) {
+	public String eliminar(@PathVariable Long id, RedirectAttributes attribute) {
 
 		Roles roles = null;
 

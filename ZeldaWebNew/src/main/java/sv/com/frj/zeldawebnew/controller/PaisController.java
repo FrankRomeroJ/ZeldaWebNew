@@ -79,7 +79,7 @@ public class PaisController {
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") Integer id, Model model, RedirectAttributes attribute) {
+	public String editar(@PathVariable Integer id, Model model, RedirectAttributes attribute) {
 			
 		Pais pais = null;
 		
@@ -115,7 +115,7 @@ public class PaisController {
 
 	@Secured({ "ROLE_ADMIN" , "ROLE_USER" })
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable("id") Integer id, RedirectAttributes attribute) {
+	public String eliminar(@PathVariable Integer id, RedirectAttributes attribute) {
 
 		Pais pais = null;
 		

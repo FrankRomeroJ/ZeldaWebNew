@@ -63,28 +63,28 @@ public class EmpresaController {
 
 	@GetMapping(value = "/buscarPorPais")
 	public @ResponseBody List<Departamento> todosDepartamentoPorPais(
-			@RequestParam(value = "idPais", required = true) Integer idPais) {
+            @RequestParam(required = true) Integer idPais) {
 
 		return departamentoService.buscarPorIdPais(idPais);
 	}
 
 	@GetMapping(value = "/buscarPorDepartamento")
 	public @ResponseBody List<Municipio> todosMunicipioPorDepartamento(
-			@RequestParam(value = "idDepartamento", required = true) Integer idDepartamento) {
+            @RequestParam(required = true) Integer idDepartamento) {
 
 		return municipioService.buscarPorIdDepartamento(idDepartamento);
 	}
 	
 	@GetMapping(value = "/buscarPorMunicipio")
 	public @ResponseBody Municipio MunicipioPorId(
-			@RequestParam(value = "idMunicipio", required = true) Integer idMunicipio) {
+            @RequestParam(required = true) Integer idMunicipio) {
 
 		return municipioService.buscarPorId(idMunicipio);
 	}
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/consultar/{id}")
-	public String consultar(@PathVariable("id") Integer id, Model model, RedirectAttributes attribute) {
+	public String consultar(@PathVariable Integer id, Model model, RedirectAttributes attribute) {
 
 		Empresa empresa = empresaService.buscarPorId(id);	
 		
@@ -115,10 +115,10 @@ public class EmpresaController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@PostMapping("/save")
-	public String guardar(@Valid @ModelAttribute Empresa empresa, 
-			@Valid @RequestParam("pais") Pais pais, 
-			@Valid @RequestParam("departamento") Departamento departamento, 
-			@Valid @RequestParam("municipio") Municipio municipio, 
+	public String guardar(@Valid @ModelAttribute Empresa empresa,
+            @Valid @RequestParam Pais pais,
+            @Valid @RequestParam Departamento departamento,
+            @Valid @RequestParam Municipio municipio, 
 						BindingResult result, Model model,
 			RedirectAttributes attribute) {
 		Integer mipais =pais.getId();
@@ -144,7 +144,7 @@ public class EmpresaController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") Integer id, Model model, RedirectAttributes attribute) {
+	public String editar(@PathVariable Integer id, Model model, RedirectAttributes attribute) {
 
 		Empresa empresa = null;
 
@@ -168,7 +168,6 @@ public class EmpresaController {
 
 		model.addAttribute("titulo", "Formulario: Editar Empresa");
 		model.addAttribute("empresa", empresa);
-		// model.addAttribute("pais",listaPais);
 		model.addAttribute("departamento", listadoDepartamento);
 		model.addAttribute("municipio", listadoMunicipio);
 
@@ -177,7 +176,7 @@ public class EmpresaController {
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable("id") Integer id, RedirectAttributes attribute) {
+	public String eliminar(@PathVariable Integer id, RedirectAttributes attribute) {
 
 		Empresa empresa = null;
 

@@ -1,6 +1,7 @@
 package sv.com.frj.zeldawebnew.models.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "municipio")
 public class Municipio implements Serializable{
+
+
+
 
 	/**
 	 * 
@@ -86,7 +90,26 @@ public class Municipio implements Serializable{
 
 
 
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(departamento, descripcion, id);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Municipio other = (Municipio) obj;
+		return Objects.equals(departamento, other.departamento) && Objects.equals(descripcion, other.descripcion)
+				&& Objects.equals(id, other.id);
+	}
+
 
 
 	

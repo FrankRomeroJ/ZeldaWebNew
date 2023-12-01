@@ -1,7 +1,7 @@
 package sv.com.frj.zeldawebnew.models.entity;
 
 import java.io.Serializable;
-
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,6 +71,24 @@ public class Departamento implements Serializable{
 	@Override
 	public String toString() {
 		return "Departamentos [id=" + id + ", descripcion=" + descripcion +  ", pais=" + pais + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(descripcion, id, pais);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Departamento other = (Departamento) obj;
+		return Objects.equals(descripcion, other.descripcion) && Objects.equals(id, other.id)
+				&& Objects.equals(pais, other.pais);
 	}
 	
 
