@@ -33,8 +33,17 @@
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
-						<li class="nav-item" sec:authorize="isAuthenticated()">
-							<a class="nav-link" th:href="@{/views/clientes/}">Clientes</a>
+						<li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+								aria-expanded="false">Contabilidad</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" th:href="@{/views/acc/catalogo/}">Catalogo</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/acc/partida/}">Partida Contable</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/acc/movimiento/}">Movimiento Contable</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/acc/control/}">Control de Partidas</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/acc/periodo/}">Periodo Contable</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/acc/tipo/}">Tipo de Partidas</a></li>
+							</ul>
 						</li>
 						<li class="nav-item dropdown" sec:authorize="isAuthenticated()">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -50,6 +59,7 @@
 								aria-expanded="false">Maestros</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" th:href="@{/views/empresa/}">Empresas</a></li>
+								<li><a class="dropdown-item" th:href="@{/views/clientes/}">Clientes</a></li>
 								<li><a class="dropdown-item" th:href="@{/views/pais/}">Paises</a></li>
 								<li><a class="dropdown-item" th:href="@{/views/departamento/}">Departamentos</a></li>
 								<li><a class="dropdown-item" th:href="@{/views/municipio/}">Municipios</a></li>
@@ -70,7 +80,8 @@
 
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								<a class="dropdown-item" href="#">Perfil</a>
-								<a class="dropdown-item" th:href="@{/views/users/cambiaclaveUser}">Cambiar Contraseña</a>
+								<a class="dropdown-item" th:href="@{/views/users/cambiaclaveUser}">Cambiar
+									Contraseña</a>
 
 
 								<form th:action="@{/logout}" method="post">
@@ -138,11 +149,12 @@
 		}
 		)
 	</script>
-	
+
 	<th:block layout:fragment="page-scripts">
-		
-		
-	</th:block></th>
+
+
+	</th:block>
+	</th>
 
 </body>
 

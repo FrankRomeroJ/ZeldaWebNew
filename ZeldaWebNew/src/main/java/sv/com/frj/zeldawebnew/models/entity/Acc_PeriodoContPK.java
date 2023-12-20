@@ -12,27 +12,20 @@ public class Acc_PeriodoContPK implements Serializable{
 
 	private static final long serialVersionUID = 1l;
 	
-	@Column(name="empresa")
-	private int empresaPK;
-	
 	@Column(name="aniocontable",length=4)
 	private int aniocontable;
 	@Column(name="mescontable", length=2)
 	private int mescontable;
+	
 	public Acc_PeriodoContPK() {
 	
 	}
 	public Acc_PeriodoContPK(int empresaPK, int aniocontable, int mescontable) {
-		this.empresaPK = empresaPK;
+		
 		this.aniocontable = aniocontable;
 		this.mescontable = mescontable;
 	}
-	public int getEmpresa() {
-		return empresaPK;
-	}
-	public void setEmpresa(int empresaPK) {
-		this.empresaPK = empresaPK;
-	}
+
 	public int getAniocontable() {
 		return aniocontable;
 	}
@@ -47,12 +40,11 @@ public class Acc_PeriodoContPK implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Acc_PeriodoContPK [empresaPK=" + empresaPK + ", aniocontable=" + aniocontable + ", mescontable="
-				+ mescontable + "]";
+		return "Acc_PeriodoContPK [aniocontable=" + aniocontable + ", mescontable=" + mescontable + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(aniocontable, empresaPK, mescontable);
+		return Objects.hash(aniocontable, mescontable);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -63,7 +55,7 @@ public class Acc_PeriodoContPK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Acc_PeriodoContPK other = (Acc_PeriodoContPK) obj;
-		return aniocontable == other.aniocontable && empresaPK == other.empresaPK && mescontable == other.mescontable;
+		return aniocontable == other.aniocontable && mescontable == other.mescontable;
 	}
 	
 	

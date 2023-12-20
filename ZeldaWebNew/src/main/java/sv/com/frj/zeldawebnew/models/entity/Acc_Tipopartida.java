@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -19,17 +20,16 @@ public class Acc_Tipopartida implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@EmbeddedId
-	private Acc_TipopartidaPK llave;
+	
+	@Id
+	@Column(name="codigo")
+	private String codigo;
 	
 	
 	@Column(name="descripcion")
 	private String descripcion;
 	
-	@ManyToOne
-	@MapsId("empresaFK")
-	@JoinColumn(name="empresa")
-	private Empresa empresa;
+	
 	
 	
 	public Acc_Tipopartida() {
@@ -37,22 +37,28 @@ public class Acc_Tipopartida implements Serializable{
 	}
 
 
-	public Acc_Tipopartida(Acc_TipopartidaPK llave, String descripcion, Empresa empresa) {
-		super();
-		this.llave = llave;
+
+
+	public Acc_Tipopartida(String codigo, String descripcion) {
+		this.codigo = codigo;
 		this.descripcion = descripcion;
-		this.empresa = empresa;
 	}
 
 
-	public Acc_TipopartidaPK getLlave() {
-		return llave;
+
+
+	public String getCodigo() {
+		return codigo;
 	}
 
 
-	public void setLlave(Acc_TipopartidaPK llave) {
-		this.llave = llave;
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
+
+
 
 
 	public String getDescripcion() {
@@ -60,24 +66,22 @@ public class Acc_Tipopartida implements Serializable{
 	}
 
 
+
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
 
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
 
 
 	@Override
 	public String toString() {
-		return "Acc_Tipopartida [llave=" + llave + ", descripcion=" + descripcion + ", empresa=" + empresa + "]";
+		return "Acc_Tipopartida [codigo=" + codigo + ", descripcion=" + descripcion + "]";
 	}
+
+
+
+
 	
 }
